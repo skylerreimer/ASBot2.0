@@ -60,3 +60,5 @@ bot.on('message', message => {
 });
 //login info for the bot
 bot.login(config.token);
+
+//test comment
