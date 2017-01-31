@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 const config = require("./config.json");
+const password = require("./password.json");
 var setup = require("./setup.js");
 
 //read in your file
@@ -9,13 +10,17 @@ var workbook = XLSX.readFile('pokemon.xlsx');
 //load the worksheet with the pokemon names
 var worksheet = workbook.Sheets[workbook.SheetNames[4]];
 
+//make a set of commands
+var commandSet = setup.getCommandList();
+
 //make the map of pokemon and their row numbers
-var pokemonList = setup.getPokemonList(worksheet);
+var pokemonList = setup.getPokemonList(workbook.Sheets[workbook.SheetNames[4]]);
 
 //the bot will let you know in console when it is ready
 bot.on('ready', () => {
   console.log('Bot is online!');
 });
+
 
 //begin looking for commands
 bot.on('message', message => {
@@ -30,7 +35,7 @@ bot.on('message', message => {
   //grab the arguments
   let args = message.content.split(" ").slice(1);
 
-  if(command === "pokeinfo"){
+  if(command === "asbstats"){
     var tempName = args[0].toLowerCase();
     if(pokemonList.has(tempName)){
       //get the row of the pokemon
@@ -55,10 +60,24 @@ bot.on('message', message => {
     }else{
       message.reply("That's not a pokemon! Did you make a typo?");
     }
+  }else if(command ==="asbility"){
+    message.reply("That doesn't work yet!");
+  }else if(command ==="asbKitem"){
+    message.reply("That doesn't work yet!");
+  }else if(command ==="asbHitem"){
+    message.reply("That doesn't work yet!");
+  }else if(command ==="asbTitem"){
+    message.reply("That doesn't work yet!");
+  }else if(command ==="asbnature"){
+    message.reply("That doesn't work yet!");
+  }else if(command ==="calc"){
+    message.reply("That doesn't work yet!");
+  }else if(command ==="asbMove"){
+    message.reply("That doesn't work yet!");
+  }else if(command ==="random"){
+    message.reply("That doesn't work yet!");
   }
 
 });
 //login info for the bot
-bot.login(config.token);
-
-//test comment
+bot.login(password.token);

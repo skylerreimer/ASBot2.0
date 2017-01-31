@@ -13,5 +13,22 @@ module.exports = {
     }
 
     return pokemonList;
+  },
+
+  getCommandList: function(){
+    var set = new Set();
+
+    set.add("asbstats");
+    set.add("asbility");
+    set.add("asbKitem");
+    set.add("asbHitem");
+    set.add("asbTitem");
+    set.add("asbnature");
+    set.add("calc");
+    set.add("asbMove");
+    set.add("random");
+
+    return set;
   }
+
 };
