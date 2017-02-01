@@ -48,7 +48,8 @@ bot.on('message', message => {
       if(worksheet['E'+row].v != 'x'){
         messageContent += "/" + worksheet['E'+row].v;
       }
-
+      console.log(tempName);
+      console.log(row);
       //finish collecting information
       messageContent+= " | " + worksheet['F'+row].v + "/" + worksheet['G'+row].v + "/"
       + worksheet['H'+row].v+ "/" + worksheet['I'+row].v+ "/" + worksheet['J'+row].v+ "/" + worksheet['K'+row].v+ "/" + worksheet['L'+row].v
