@@ -1,5 +1,6 @@
 {
   "prefix" : "!",
   "numPokemon" : "850",
-  "numNatures" : "27"
+  "numNatures" : "27",
+  "numAbilities": "195"
 }

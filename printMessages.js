@@ -40,6 +40,19 @@ module.exports = {
     }
 
     return messageContent;
+  },
+
+  printAbilities: function(ability, worksheet, abilityList){
+    console.log('looking for '+ability);
+    if(abilityList.has(ability)){
+      console.log('Found ' + ability);
+      var row = abilityList.get(ability);
+      var messageContent = ability.charAt(0).toUpperCase() + ability.slice(1) + " - Type: " + worksheet['B'+row].v + " | Description: " + worksheet['C'+row].v + " | Mold Breaker: " + worksheet['D'+row].v;
+    }else{
+      messageContent = "That's not an ability! Did you make a typo?";
+    }
+
+    return messageContent;
   }
 
 

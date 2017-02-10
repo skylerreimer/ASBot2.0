@@ -12,10 +12,12 @@ var workbook = XLSX.readFile('pokemon.xlsx');
 //load the worksheet with the pokemon names
 var worksheet = workbook.Sheets[workbook.SheetNames[4]];
 var worksheetNatures = workbook.Sheets[workbook.SheetNames[5]];
+var worksheetAbilities = workbook.Sheets[workbook.SheetNames[6]];
 
 //make the map of pokemon and their row numbers
 var pokemonList = setup.getPokemonList(worksheet);
 var natureList = setup.getNatureList(worksheetNatures);
+var abilityList = setup.getAbilityList(worksheetAbilities);
 
 //the bot will let you know in console when it is ready
 bot.on('ready', () => {
@@ -33,7 +35,7 @@ bot.on('message', message => {
   let command = message.content.split(" ")[0];
   command = command.slice(config.prefix.length);
   command.toLowerCase();
-  //grab the arguments
+  //grab the arguments and split them by spaces
   let args = message.content.split(" ").slice(1);
 
   if(command === "asbstats"){
@@ -43,7 +45,15 @@ bot.on('message', message => {
     message.channel.sendMessage(messageContent);
 
   }else if(command ==="asbility"){
-    message.reply("That doesn't work yet!");
+
+    var abilityName = args[0].toLowerCase();
+    //second argument for abilities that are two words; Ex Zen Mode
+    if(args[1] != undefined){
+      abilityName += " " + args[1].toLowerCase();
+    }
+    var messageContent = messagePrinter.printAbilities(abilityName, worksheetAbilities, abilityList);
+    message.channel.sendMessage(messageContent);
+
   }else if(command ==="asbKitem"){
     message.reply("That doesn't work yet!");
   }else if(command ==="asbHitem"){

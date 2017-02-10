@@ -26,6 +26,19 @@ module.exports = {
     }
 
     return natureList;
+  },
+
+  getAbilityList: function(worksheet){
+    //add of the abilities to the map with their row number
+    var abilityList = new Map();
+    for(i = 2; i<=config.numAbilities; i++){
+      var cell = 'A'+i;
+      var abilityCell = worksheet[cell];
+      var abilityName = abilityCell.v.toLowerCase();
+      abilityList.set(abilityName,i);
+    }
+
+    return abilityList;
   }
 
 };
