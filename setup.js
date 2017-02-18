@@ -39,6 +39,53 @@ module.exports = {
     }
 
     return abilityList;
+  },
+
+  getHeldItemList: function(worksheet){
+    var itemHeldList = new Map();
+
+    for(i = 2; i < config.numHeldItems; i++){
+      var itemName = worksheet['A'+i].v.toLowerCase();
+      itemHeldList.set(itemName,i);
+    }
+    return itemHeldList;
+  },
+
+  getTlrItemList: function(worksheet){
+    var itemTLRList = new Map();
+
+    for(i = 2; i < config.numTLRItems; i++){
+      var itemName = worksheet['A'+i].v.toLowerCase();
+      itemTLRList.set(itemName,i);
+    }
+    return itemTLRList;
+  },
+
+  getMoveList: function(worksheet){
+    var moveList = new Map();
+
+    var start;
+    var end;
+    var arr = [0,0];
+    var name;
+
+    for(i = 2; i< 8; i++){
+
+
+      if(worksheet['A'+i] != undefined){
+        start = i;
+        name = worksheet['A'+i].v;
+
+      }else{
+        end = i;
+        arr[0] = start;
+        arr[1] = end;
+        moveList.set(name , arr);
+      }
+
+    }
+
+    return moveList;
   }
 
 };

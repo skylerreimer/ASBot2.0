@@ -43,9 +43,8 @@ module.exports = {
   },
 
   printAbilities: function(ability, worksheet, abilityList){
-    console.log('looking for '+ability);
+
     if(abilityList.has(ability)){
-      console.log('Found ' + ability);
       var row = abilityList.get(ability);
       var messageContent = ability.charAt(0).toUpperCase() + ability.slice(1) + " - Type: " + worksheet['B'+row].v + " | Description: " + worksheet['C'+row].v + " | Mold Breaker: " + worksheet['D'+row].v;
     }else{
@@ -53,7 +52,33 @@ module.exports = {
     }
 
     return messageContent;
+  },
+
+  printHeldItem: function(item, worksheet, itemList){
+
+    if(itemList.has(item)){
+      var row = itemList.get(item);
+      var messageContent = item.charAt(0).toUpperCase() + item.slice(1) + " - Item Cost: " + worksheet['C' + row].v + " | Effect: " + worksheet['D' + row].v;
+    }else{
+      messageContent = "That's not a held item! Did you make a typo?";
+    }
+
+    return messageContent;
+  },
+
+  printTLRItem: function(item, worksheet, itemList){
+
+    if(itemList.has(item)){
+      var row = itemList.get(item);
+      var messageContent = item.charAt(0).toUpperCase() + item.slice(1) + " - Item Cost: " + worksheet['C' + row].v + " | Effect: " + worksheet['D' + row].v + " | Trigger: " + worksheet['G' + row].v;
+    }else{
+      messageContent = "That's not a TLR item! Did you make a typo?";
+    }
+
+    return messageContent;
   }
+
+
 
 
 

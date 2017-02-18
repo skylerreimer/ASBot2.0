@@ -13,11 +13,18 @@ var workbook = XLSX.readFile('pokemon.xlsx');
 var worksheet = workbook.Sheets[workbook.SheetNames[4]];
 var worksheetNatures = workbook.Sheets[workbook.SheetNames[5]];
 var worksheetAbilities = workbook.Sheets[workbook.SheetNames[6]];
+var worksheetHeldItems = workbook.Sheets[workbook.SheetNames[9]];
+var worksheetTLRItems = workbook.Sheets[workbook.SheetNames[12]];
+var worksheetMoves = workbook.Sheets[workbook.SheetNames[8]];
 
 //make the map of pokemon and their row numbers
 var pokemonList = setup.getPokemonList(worksheet);
 var natureList = setup.getNatureList(worksheetNatures);
 var abilityList = setup.getAbilityList(worksheetAbilities);
+var heldItemList = setup.getHeldItemList(worksheetHeldItems);
+var tlrItemList = setup.getTlrItemList(worksheetTLRItems);
+var moveList = setup.getMoveList(worksheetMoves);
+
 
 //the bot will let you know in console when it is ready
 bot.on('ready', () => {
@@ -57,9 +64,29 @@ bot.on('message', message => {
   }else if(command ==="asbKitem"){
     message.reply("That doesn't work yet!");
   }else if(command ==="asbHitem"){
-    message.reply("That doesn't work yet!");
+
+    var itemName = args[0].toLowerCase();
+
+    if(args[1] != undefined){
+      itemName += " " + args[1].toLowerCase();
+    }
+
+    var messageContent = messagePrinter.printHeldItem(itemName, worksheetHeldItems, heldItemList);
+    message.channel.sendMessage(messageContent);
+
   }else if(command ==="asbTitem"){
-    message.reply("That doesn't work yet!");
+
+    var itemName = args[0].toLowerCase();
+
+    var i = 1;
+    while(args[i] != undefined){
+      itemName += " " + args[i].toLowerCase();
+      i++;
+    }
+
+    var messageContent = messagePrinter.printTLRItem(itemName, worksheetTLRItems, tlrItemList);
+    message.channel.sendMessage(messageContent);
+
   }else if(command ==="asbnature"){
 
     var natureName = args[0].toLowerCase();
@@ -72,8 +99,6 @@ bot.on('message', message => {
     message.reply("That doesn't work yet!");
   }else if(command ==="random"){
     message.reply("That doesn't work yet! :");
-  }else if(command ==="poop"){
-    message.reply(":poop:");
   }
 
 });
