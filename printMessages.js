@@ -76,9 +76,42 @@ module.exports = {
     }
 
     return messageContent;
+  },
+
+  printMoves: function(move, worksheet, moveList){
+
+    console.log('looking for '+ move);
+    if(moveList.has(move)){
+      console.log('found '+ move);
+      var rows = moveList.get(move);
+      var messageContent = move.charAt(0).toUpperCase() + move.slice(1) + " - Type: " + worksheet['B' + rows[0]].v + " | Category: " + worksheet['C' + rows[0]].v
+      + " | Target: " + worksheet['D' + rows[0]].v;
+
+      if(worksheet['G' + rows[0]].v != '-'){
+        messageContent+= " | BAP: " + worksheet['G' + rows[0]].v;
+      }
+
+      messageContent += " | Acc: " + worksheet['I' + rows[0]].v + " | Energy Cost: " + worksheet['J' + rows[0]].v;
+
+      if(worksheet['K' + rows[0]].v != '-'){
+        messageContent += " | Effect Chance: " + worksheet['K' + rows[0]].v;
+      }
+
+      messageContent += " | Contact: " + worksheet['L' + rows[0]].v + " | Priority: " + worksheet['M' + rows[0]].v
+      + " | Combo Type: " + worksheet['N' + rows[0]].v + " | Snatch: " + worksheet['O' + rows[0]].v + " | Magic Coat/Bounce: " + worksheet['P' + rows[0]].v + " | Description: ";
+
+      var counter = rows[0] + 1;
+      while(counter <= rows[1] ){
+        messageContent += " " + worksheet['B' + counter].v;
+        counter++;
+      }
+
+    }else{
+      messageContent = "That's not a move or a command! Did you make a typo?";
+    }
+
+    return messageContent;
   }
-
-
 
 
 

@@ -96,7 +96,18 @@ bot.on('message', message => {
   }else if(command ==="calc"){
     message.reply("That doesn't work yet!");
   }else if(command ==="asbMove"){
-    message.reply("That doesn't work yet!");
+
+    var moveName = args[0].toLowerCase();
+
+    var i = 1;
+    while(args[i] != undefined){
+      moveName += " " + args[i].toLowerCase();
+      i++;
+    }
+    console.log('input: '+moveName);
+    var messageContent = messagePrinter.printMoves(moveName, worksheetMoves, moveList);
+    message.channel.sendMessage(messageContent);
+
   }else if(command ==="random"){
     message.reply("That doesn't work yet! :");
   }
