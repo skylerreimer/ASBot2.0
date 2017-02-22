@@ -111,6 +111,17 @@ module.exports = {
     }
 
     return messageContent;
+  },
+
+  rand: function(low,high,next){
+    var messageContent;
+    if(low != undefined && high !=undefined && next == undefined){
+      messageContent = Math.floor((Math.random() * high) + low);
+    }else{
+      messageContent = "Invalid parameters try again.";
+    }
+
+    return messageContent;
   }
 
 

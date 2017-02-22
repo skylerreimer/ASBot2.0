@@ -109,7 +109,10 @@ bot.on('message', message => {
     message.channel.sendMessage(messageContent);
 
   }else if(command ==="random"){
-    message.reply("That doesn't work yet! :");
+
+    var messageContent = messagePrinter.rand(args[0],args[1],args[2]);
+    message.channel.sendMessage(messageContent);
+
   }
 
 });
