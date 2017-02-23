@@ -15,7 +15,9 @@ var worksheetNatures = workbook.Sheets[workbook.SheetNames[5]];
 var worksheetAbilities = workbook.Sheets[workbook.SheetNames[6]];
 var worksheetHeldItems = workbook.Sheets[workbook.SheetNames[9]];
 var worksheetTLRItems = workbook.Sheets[workbook.SheetNames[12]];
+var worksheetKeyItems = workbook.Sheets[workbook.SheetNames[10]];
 var worksheetMoves = workbook.Sheets[workbook.SheetNames[8]];
+
 
 //make the map of pokemon and their row numbers
 var pokemonList = setup.getPokemonList(worksheet);
@@ -23,6 +25,7 @@ var natureList = setup.getNatureList(worksheetNatures);
 var abilityList = setup.getAbilityList(worksheetAbilities);
 var heldItemList = setup.getHeldItemList(worksheetHeldItems);
 var tlrItemList = setup.getTlrItemList(worksheetTLRItems);
+var keyItemList = setup.getKeyItemList(worksheetKeyItems);
 var moveList = setup.getMoveList(worksheetMoves);
 
 
@@ -62,7 +65,18 @@ bot.on('message', message => {
     message.channel.sendMessage(messageContent);
 
   }else if(command ==="asbKitem"){
-    message.reply("That doesn't work yet!");
+
+    var itemName = args[0].toLowerCase();
+
+    var i = 1;
+    while(args[i] != undefined){
+      itemName += " " + args[i].toLowerCase();
+      i++;
+    }
+
+    var messageContent = messagePrinter.printKeyItem(itemName, worksheetKeyItems, keyItemList);
+    message.channel.sendMessage(messageContent);
+
   }else if(command ==="asbHitem"){
 
     var itemName = args[0].toLowerCase();

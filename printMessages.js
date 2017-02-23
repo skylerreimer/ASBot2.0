@@ -78,11 +78,23 @@ module.exports = {
     return messageContent;
   },
 
+  printKeyItem: function(item, worksheet, itemList){
+
+    if(itemList.has(item)){
+      var row = itemList.get(item);
+      var messageContent = item.charAt(0).toUpperCase() + item.slice(1) + " - Item Type: " + worksheet['B' + row].v + " | Item Cost: " + worksheet['C' + row].v
+      + " | Effect: " + worksheet['D' + row].v + " | Affected Pokemon: " + worksheet['E' + row].v;
+    }else{
+      messageContent = "That's not a key item! Did you make a typo?";
+    }
+    return messageContent;
+  },
+
   printMoves: function(move, worksheet, moveList){
 
-    console.log('looking for '+ move);
+
     if(moveList.has(move)){
-      console.log('found '+ move);
+
       var rows = moveList.get(move);
       var messageContent = move.charAt(0).toUpperCase() + move.slice(1) + " - Type: " + worksheet['B' + rows[0]].v + " | Category: " + worksheet['C' + rows[0]].v
       + " | Target: " + worksheet['D' + rows[0]].v;

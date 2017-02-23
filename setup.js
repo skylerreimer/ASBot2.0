@@ -61,6 +61,16 @@ module.exports = {
     return itemTLRList;
   },
 
+  getKeyItemList: function(worksheet){
+    var keyItemList = new Map();
+
+    for(i = 2; i <= config.numKeyItems; i++){
+      var itemName = worksheet['A'+i].v.toLowerCase();
+      keyItemList.set(itemName,i);
+    }
+    return keyItemList;
+  },
+
   getMoveList: function(worksheet){
     var moveList = new Map();
 
@@ -94,7 +104,7 @@ module.exports = {
         }
       }
     }
-    
+
     return moveList;
   }
 
