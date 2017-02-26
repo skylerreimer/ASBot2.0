@@ -134,6 +134,25 @@ module.exports = {
     }
 
     return messageContent;
+  },
+
+  printHelp: function(){
+    var messageContent = "Made by Skyler Reimer. https://github.com/skylerreimer/ASBot2.0\n";
+    messageContent += "To add this bot to your server: https://discord.gg/ZmMzE\n";
+    messageContent += "Please message me @comic67 or make an issue on the bot's github if you find a bug\n";
+    messageContent += "\n"
+    messageContent += "Command List:\n";
+    messageContent += "!asbstats pokemon name\n";
+    messageContent += "!asbility ability nane\n";
+    messageContent += "!asbKitem key item name\n";
+    messageContent += "!asbHitem held item name\n";
+    messageContent += "!asbTitem TLR item name\n";
+    messageContent += "!asbnature nature name\n";
+    messageContent += "!asbmove move name\n";
+    messageContent += "!random lowestNum highestNum\n";
+    messageContent += "!asbHelp\n";
+
+    return messageContent;
   }
 
 
