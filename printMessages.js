@@ -127,7 +127,9 @@ module.exports = {
 
   rand: function(low,high,next){
     var messageContent;
-    if(low != undefined && high !=undefined && next == undefined){
+    if(low == undefined){
+      messageContent = Math.floor((Math.random() * 10000) + 1);
+    }else if(low != undefined && high !=undefined && next == undefined){
       messageContent = Math.floor((Math.random() * high) + low);
     }else{
       messageContent = "Invalid parameters try again.";
@@ -142,15 +144,15 @@ module.exports = {
     messageContent += "Please message me @comic67 or make an issue on the bot's github if you find a bug\n";
     messageContent += "\n"
     messageContent += "Command List:\n";
-    messageContent += "!asbstats pokemon name\n";
-    messageContent += "!asbility ability nane\n";
-    messageContent += "!asbKitem key item name\n";
-    messageContent += "!asbHitem held item name\n";
-    messageContent += "!asbTitem TLR item name\n";
-    messageContent += "!asbnature nature name\n";
-    messageContent += "!asbmove move name\n";
-    messageContent += "!random lowestNum highestNum\n";
-    messageContent += "!asbHelp\n";
+    messageContent += "%asbstats pokemon name\n";
+    messageContent += "%asbility ability nane\n";
+    messageContent += "%asbKitem key item name\n";
+    messageContent += "%asbHitem held item name\n";
+    messageContent += "%asbTitem TLR item name\n";
+    messageContent += "%asbnature nature name\n";
+    messageContent += "%asbmove move name\n";
+    messageContent += "%roll lowestNum highestNum (no arguments defaults to 1 to 10000)\n";
+    messageContent += "%asbHelp\n";
 
     return messageContent;
   }
