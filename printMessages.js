@@ -138,7 +138,7 @@ module.exports = {
 
   printHelp: function(){
     var messageContent = "Made by Skyler Reimer. https://github.com/skylerreimer/ASBot2.0\n";
-    messageContent += "To add this bot to your server: https://discord.gg/ZmMzE\n";
+    messageContent += "To add this bot to your server: http://bit.ly/2l0H4EB\n";
     messageContent += "Please message me @comic67 or make an issue on the bot's github if you find a bug\n";
     messageContent += "\n"
     messageContent += "Command List:\n";
