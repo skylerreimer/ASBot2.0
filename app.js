@@ -51,6 +51,13 @@ bot.on('message', message => {
   if(command === "asbstats"){
 
     var tempName = args[0].toLowerCase();
+
+    var i = 1;
+    while(args[i] != undefined){
+      tempName += " " + args[i].toLowerCase();
+      i++;
+    }
+
     var messageContent = messagePrinter.printAsbstats(tempName, worksheet, pokemonList);
     message.channel.sendMessage(messageContent);
 
