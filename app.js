@@ -43,8 +43,7 @@ bot.on('message', message => {
   if (!message.content.startsWith(config.prefix)) return;
   //simplfy if/else logic for commands
   let command = message.content.split(" ")[0];
-  command = command.slice(config.prefix.length);
-  command.toLowerCase();
+  command = command.slice(config.prefix.length).toLowerCase();
   //grab the arguments and split them by spaces
   let args = message.content.split(" ").slice(1);
 
@@ -71,7 +70,7 @@ bot.on('message', message => {
     var messageContent = messagePrinter.printAbilities(abilityName, worksheetAbilities, abilityList);
     message.channel.sendMessage(messageContent);
 
-  }else if(command ==="asbKitem"){
+  }else if(command ==="asbkitem"){
 
     var itemName = args[0].toLowerCase();
 
@@ -84,7 +83,7 @@ bot.on('message', message => {
     var messageContent = messagePrinter.printKeyItem(itemName, worksheetKeyItems, keyItemList);
     message.channel.sendMessage(messageContent);
 
-  }else if(command ==="asbHitem"){
+  }else if(command ==="asbhitem"){
 
     var itemName = args[0].toLowerCase();
 
@@ -95,7 +94,7 @@ bot.on('message', message => {
     var messageContent = messagePrinter.printHeldItem(itemName, worksheetHeldItems, heldItemList);
     message.channel.sendMessage(messageContent);
 
-  }else if(command ==="asbTitem"){
+  }else if(command ==="asbtitem"){
 
     var itemName = args[0].toLowerCase();
 
@@ -116,7 +115,7 @@ bot.on('message', message => {
 
   }else if(command ==="calc"){
     message.reply("That doesn't work yet!");
-  }else if(command ==="asbMove"){
+  }else if(command ==="asbmove"){
 
     var moveName = args[0].toLowerCase();
 

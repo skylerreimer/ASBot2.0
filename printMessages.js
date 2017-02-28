@@ -150,13 +150,13 @@ module.exports = {
     messageContent += "Command List:\n";
     messageContent += "%asbstats pokemon name\n";
     messageContent += "%asbility ability nane\n";
-    messageContent += "%asbKitem key item name\n";
-    messageContent += "%asbHitem held item name\n";
-    messageContent += "%asbTitem TLR item name\n";
+    messageContent += "%asbkitem key item name\n";
+    messageContent += "%asbhitem held item name\n";
+    messageContent += "%asbtitem TLR item name\n";
     messageContent += "%asbnature nature name\n";
     messageContent += "%asbmove move name\n";
     messageContent += "%roll lowestNum highestNum (no arguments defaults to 1 to 10000)\n";
-    messageContent += "%asbHelp\n";
+    messageContent += "%asbHelp or %help\n";
 
     return messageContent;
   }
