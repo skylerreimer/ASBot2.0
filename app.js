@@ -133,7 +133,7 @@ bot.on('message', message => {
     var messageContent = messagePrinter.rand(args[0],args[1],args[2]);
     message.channel.sendMessage(messageContent);
 
-  }else if(command === "asbHelp"){
+  }else if(command === "help"){
     var messageContent = messagePrinter.printHelp();
     message.channel.sendMessage(messageContent);
   }

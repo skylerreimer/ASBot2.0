@@ -156,7 +156,7 @@ module.exports = {
     messageContent += "%asbnature nature name\n";
     messageContent += "%asbmove move name\n";
     messageContent += "%roll lowestNum highestNum (no arguments defaults to 1 to 10000)\n";
-    messageContent += "%asbHelp or %help\n";
+    messageContent += "%help\n";
 
     return messageContent;
   }
