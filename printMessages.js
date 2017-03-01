@@ -13,7 +13,7 @@ module.exports = {
       var messageContent = name.charAt(0).toUpperCase() + name.slice(1) + " - " + worksheet['C'+row].v + " | " + worksheet['D'+row].v;
 
       //if the pokemon has hidden ability, print it
-      if(worksheet['E'+row].v != 'x'){
+      if(worksheet['E'+row] != undefined){
         messageContent += "/" + worksheet['E'+row].v;
       }
       //finish collecting information
