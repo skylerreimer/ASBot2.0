@@ -9,6 +9,7 @@ module.exports = {
       var cell = 'B'+i;
       var pokemonCell = worksheet[cell];
       var pokemonName = pokemonCell.v.toLowerCase();
+      pokemonName = pokemonName.replace(/\s+/g, '');
       pokemonList.set(pokemonName,i);
     }
 
@@ -35,6 +36,7 @@ module.exports = {
       var cell = 'A'+i;
       var abilityCell = worksheet[cell];
       var abilityName = abilityCell.v.toLowerCase();
+      abilityName = abilityName.replace(/\s+/g, '');
       abilityList.set(abilityName,i);
     }
 
@@ -46,6 +48,7 @@ module.exports = {
 
     for(i = 2; i < config.numHeldItems; i++){
       var itemName = worksheet['A'+i].v.toLowerCase();
+      itemName = itemName.replace(/\s+/g, '');
       itemHeldList.set(itemName,i);
     }
     return itemHeldList;
@@ -56,6 +59,7 @@ module.exports = {
 
     for(i = 2; i < config.numTLRItems; i++){
       var itemName = worksheet['A'+i].v.toLowerCase();
+      itemName = itemName.replace(/\s+/g, '');
       itemTLRList.set(itemName,i);
     }
     return itemTLRList;
@@ -66,6 +70,7 @@ module.exports = {
 
     for(i = 2; i <= config.numKeyItems; i++){
       var itemName = worksheet['A'+i].v.toLowerCase();
+      itemName = itemName.replace(/\s+/g, '');
       keyItemList.set(itemName,i);
     }
     return keyItemList;
@@ -87,6 +92,7 @@ module.exports = {
         var name = worksheet['A'+i].v.toLowerCase();
         name = name.replace(" (move)","");
         name = name.replace(" (command)","");
+        name = name.replace(/\s+/g, '');
       }else{
         //loop through the undefined rows until we find one with a name
         end = i;

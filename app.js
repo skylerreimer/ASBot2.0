@@ -114,7 +114,16 @@ bot.on('message', message => {
     message.channel.sendMessage(messageContent);
 
   }else if(command ==="calc"){
-    message.reply("That doesn't work yet!");
+
+    var expression = args[0];
+    var i = 1;
+    while(args[i] != undefined){
+      expression += args[i];
+      i++;
+    }
+    var messageContent = messagePrinter.printExpression(expression);
+    message.channel.sendMessage(messageContent);
+
   }else if(command ==="asbmove"){
 
     var moveName = args[0].toLowerCase();

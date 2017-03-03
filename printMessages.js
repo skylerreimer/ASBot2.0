@@ -3,14 +3,14 @@ const config = require("./config.json");
 
 module.exports = {
   printAsbstats: function(name, worksheet, pokemonList){
-
+    name = name.replace(/\s+/g, '');
     if(pokemonList.has(name)){
 
       //get the row of the pokemon
       var row = pokemonList.get(name);
 
       //begin collecting the information
-      var messageContent = name.charAt(0).toUpperCase() + name.slice(1) + " - " + worksheet['C'+row].v + " | " + worksheet['D'+row].v;
+      var messageContent = worksheet['B'+row].v + " - " + worksheet['C'+row].v + " | " + worksheet['D'+row].v;
 
       //if the pokemon has hidden ability, print it
       if(worksheet['E'+row] != undefined){
@@ -35,10 +35,10 @@ module.exports = {
   },
 
   printNatures: function(nature, worksheet, natureList){
-
+    nature = nature.replace(/\s+/g, '');
     if(natureList.has(nature)){
       var row = natureList.get(nature);
-      var messageContent = nature.charAt(0).toUpperCase() + nature.slice(1) + " - " + worksheet['B'+row].v + " | Moody: " + worksheet['C'+row].v;
+      var messageContent = worksheet['A'+row].v + " - " + worksheet['B'+row].v + " | Moody: " + worksheet['C'+row].v;
     }else{
       messageContent = "That's not a nature! Did you make a typo?";
     }
@@ -47,10 +47,10 @@ module.exports = {
   },
 
   printAbilities: function(ability, worksheet, abilityList){
-
+    ability = ability.replace(/\s+/g, '');
     if(abilityList.has(ability)){
       var row = abilityList.get(ability);
-      var messageContent = ability.charAt(0).toUpperCase() + ability.slice(1) + " - Type: " + worksheet['B'+row].v + " | Description: " + worksheet['C'+row].v + " | Mold Breaker: " + worksheet['D'+row].v;
+      var messageContent = worksheet['A'+row].v + " - Type: " + worksheet['B'+row].v + " | Description: " + worksheet['C'+row].v + " | Mold Breaker: " + worksheet['D'+row].v;
     }else{
       messageContent = "That's not an ability! Did you make a typo?";
     }
@@ -59,10 +59,10 @@ module.exports = {
   },
 
   printHeldItem: function(item, worksheet, itemList){
-
+    item = item.replace(/\s+/g, '');
     if(itemList.has(item)){
       var row = itemList.get(item);
-      var messageContent = item.charAt(0).toUpperCase() + item.slice(1) + " - Item Cost: " + worksheet['C' + row].v + " | Effect: " + worksheet['D' + row].v;
+      var messageContent = worksheet['A'+row].v + " - Item Cost: " + worksheet['C' + row].v + " | Effect: " + worksheet['D' + row].v;
     }else{
       messageContent = "That's not a held item! Did you make a typo?";
     }
@@ -71,10 +71,10 @@ module.exports = {
   },
 
   printTLRItem: function(item, worksheet, itemList){
-
+    item = item.replace(/\s+/g, '');
     if(itemList.has(item)){
       var row = itemList.get(item);
-      var messageContent = item.charAt(0).toUpperCase() + item.slice(1) + " - Item Cost: " + worksheet['C' + row].v + " | Effect: " + worksheet['D' + row].v + " | Trigger: " + worksheet['G' + row].v;
+      var messageContent = worksheet['A'+row].v + " - Item Cost: " + worksheet['C' + row].v + " | Effect: " + worksheet['D' + row].v + " | Trigger: " + worksheet['G' + row].v;
     }else{
       messageContent = "That's not a TLR item! Did you make a typo?";
     }
@@ -83,10 +83,10 @@ module.exports = {
   },
 
   printKeyItem: function(item, worksheet, itemList){
-
+    item = item.replace(/\s+/g, '');
     if(itemList.has(item)){
       var row = itemList.get(item);
-      var messageContent = item.charAt(0).toUpperCase() + item.slice(1) + " - Item Type: " + worksheet['B' + row].v + " | Item Cost: " + worksheet['C' + row].v
+      var messageContent = worksheet['A'+row].v + " - Item Type: " + worksheet['B' + row].v + " | Item Cost: " + worksheet['C' + row].v
       + " | Effect: " + worksheet['D' + row].v + " | Affected Pokemon: " + worksheet['E' + row].v;
     }else{
       messageContent = "That's not a key item! Did you make a typo?";
@@ -95,12 +95,17 @@ module.exports = {
   },
 
   printMoves: function(move, worksheet, moveList){
-
+    move = move.replace(/\s+/g, '');
 
     if(moveList.has(move)){
 
       var rows = moveList.get(move);
-      var messageContent = move.charAt(0).toUpperCase() + move.slice(1) + " - Type: " + worksheet['B' + rows[0]].v + " | Category: " + worksheet['C' + rows[0]].v
+      //format the name nicely
+      var name = worksheet['A'+rows[0]].v;
+      name = name.replace(" (Move)","");
+      name = name.replace(" (Command)","");
+
+      var messageContent = name + " - Type: " + worksheet['B' + rows[0]].v + " | Category: " + worksheet['C' + rows[0]].v
       + " | Target: " + worksheet['D' + rows[0]].v;
 
       if(worksheet['G' + rows[0]].v != '-'){
@@ -114,7 +119,7 @@ module.exports = {
       }
 
       messageContent += " | Contact: " + worksheet['L' + rows[0]].v + " | Priority: " + worksheet['M' + rows[0]].v
-      + " | Combo Type: " + worksheet['N' + rows[0]].v + " | Snatch: " + worksheet['O' + rows[0]].v + " | Magic Coat/Bounce: " + worksheet['P' + rows[0]].v + " | Description: ";
+      + " | Combo Type: " + worksheet['N' + rows[0]].v + " | Snatch: " + worksheet['O' + rows[0]].v + " | Magic Coat/Bounce: " + worksheet['P' + rows[0]].v + " \nDescription: ";
 
       var counter = rows[0] + 1;
       while(counter <= rows[1] ){
@@ -142,6 +147,11 @@ module.exports = {
     return messageContent;
   },
 
+  printExpression: function(expression){
+    var messageContent = expression + " = " + eval(expression);
+    return messageContent;
+  },
+
   printHelp: function(){
     var messageContent = "Made by Skyler Reimer. https://github.com/skylerreimer/ASBot2.0-\n";
     messageContent += "To add this bot to your server: http://bit.ly/2l0H4EB\n";
@@ -155,6 +165,7 @@ module.exports = {
     messageContent += "%asbtitem TLR item name\n";
     messageContent += "%asbnature nature name\n";
     messageContent += "%asbmove move name\n";
+    messageContent += "%calc expression\n";
     messageContent += "%roll lowestNum highestNum (no arguments defaults to 1 to 10000)\n";
     messageContent += "%help\n";
 
