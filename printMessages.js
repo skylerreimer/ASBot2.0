@@ -151,21 +151,27 @@ module.exports = {
     return messageContent;
   },
 
-  printHelp: function(){
+  printHelp: function(commands){
     var messageContent = "Made by Skyler Reimer. https://github.com/skylerreimer/ASBot2.0-\n";
     messageContent += "To add this bot to your server: http://bit.ly/2l0H4EB\n";
     messageContent += "Please message me @comic67 or make an issue on the bot's github if you find a bug\n";
     messageContent += "\n"
     messageContent += "Command List:\n";
-    messageContent += "%asbstats pokemon name\n";
-    messageContent += "%asbility ability nane\n";
-    messageContent += "%asbitem item name\n";
-    messageContent += "%asbnature nature name\n";
-    messageContent += "%asbmove move name\n";
-    messageContent += "%calc expression\n";
-    messageContent += "%roll lowestNum highestNum (no arguments defaults to 1 to 10000)\n";
-    messageContent += "%help\n";
 
+    var sortedCommands = Object.keys(commands).sort();
+    for(var i in sortedCommands) {
+      var cmd = sortedCommands[i];
+      messageContent+=config.prefix + cmd + ": " + commands[cmd].description + "\n\n";
+    }
+
+    messageContent+=config.prefix +"help: gives a list of commands\n";
+
+
+    return messageContent;
+  },
+
+  pong: function(){
+    var messageContent = "pong";
     return messageContent;
   }
 

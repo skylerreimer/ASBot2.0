@@ -29,6 +29,101 @@ var keyItemList = setup.getKeyItemList(worksheetKeyItems);
 var consumableList = setup.getConsumableList(worksheetConsumable);
 var moveList = setup.getMoveList(worksheetMoves);
 
+var message;
+var commands = {
+
+    "ping": {
+        description: "responds pong, useful for checking if bot is alive",
+        process: function(args){
+          return messagePrinter.pong();
+        }
+    },
+
+    "asbstats":{
+      description: "returns stats of a given pokemon",
+      process: function(args){
+        var name = args[0].toLowerCase();
+        var i = 1;
+        while(args[i] != undefined){
+          name += " " + args[i].toLowerCase();
+          i++;
+        }
+        return messagePrinter.printAsbstats(name, worksheet, pokemonList);
+      }
+    },
+
+    "asbility":{
+      description: "returns information about a given ability",
+      process: function(args){
+        var abilityName = args[0].toLowerCase();
+        var i = 1;
+        while(args[i] != undefined){
+          abilityName += " " + args[i].toLowerCase();
+          i++;
+        }
+        return messageContent = messagePrinter.printAbilities(abilityName, worksheetAbilities, abilityList);
+      }
+    },
+
+    "asbitem":{
+      description: "returns information about a given item",
+      process: function(args){
+        var itemName = args[0].toLowerCase();
+        var i = 1;
+        while(args[i] != undefined){
+          itemName += " " + args[i].toLowerCase();
+          i++;
+        }
+        return messageContent = messagePrinter.printItem(itemName, worksheetHeldItems, heldItemList,
+          worksheetTLRItems, tlrItemList, worksheetKeyItems, keyItemList,
+          worksheetConsumable, consumableList);
+      }
+    },
+
+    "asbnature":{
+      description: "returns information about a given nature",
+      process: function(args){
+        var natureName = args[0].toLowerCase();
+        return messageContent = messagePrinter.printNatures(natureName, worksheetNatures, natureList);
+      }
+    },
+
+    "asbmove":{
+      description: "returns information about a given move",
+      process: function(args){
+        var moveName = args[0].toLowerCase();
+        var i = 1;
+        while(args[i] != undefined){
+          moveName += " " + args[i].toLowerCase();
+          i++;
+        }
+        return messageContent = messagePrinter.printMoves(moveName, worksheetMoves, moveList);
+      }
+    },
+
+    "calc":{
+      description: "evaluates an expression",
+      process: function(args){
+        var expression = args[0];
+        var i = 1;
+        while(args[i] != undefined){
+          expression += args[i];
+          i++;
+        }
+        return messageContent = messagePrinter.printExpression(expression);
+      }
+    },
+
+    "roll":{
+      description: "gives a random number",
+      process: function(args){
+        return messageContent = messagePrinter.rand(args[0],args[1],args[2]);
+      }
+    }
+
+
+};
+
 
 //the bot will let you know in console when it is ready
 bot.on('ready', () => {
@@ -43,110 +138,20 @@ bot.on('message', message => {
   //look for the prefix
   if (!message.content.startsWith(config.prefix)) return;
   //simplfy if/else logic for commands
-  let command = message.content.split(" ")[0];
-  command = command.slice(config.prefix.length).toLowerCase();
+  let commandText = message.content.split(" ")[0];
+  commandText = commandText.slice(config.prefix.length).toLowerCase();
   //grab the arguments and split them by spaces
   let args = message.content.split(" ").slice(1);
 
-  if(command === "asbstats"){
-
-    var tempName = args[0].toLowerCase();
-
-    var i = 1;
-    while(args[i] != undefined){
-      tempName += " " + args[i].toLowerCase();
-      i++;
-    }
-
-    var messageContent = messagePrinter.printAsbstats(tempName, worksheet, pokemonList);
+  var cmd = commands[commandText];
+  if(commandText === "help"){
+    var messageContent = messagePrinter.printHelp(commands);
     message.channel.sendMessage(messageContent);
-
-  }else if(command ==="asbility"){
-
-    var abilityName = args[0].toLowerCase();
-    //second argument for abilities that are two words; Ex Zen Mode
-    if(args[1] != undefined){
-      abilityName += " " + args[1].toLowerCase();
-    }
-    var messageContent = messagePrinter.printAbilities(abilityName, worksheetAbilities, abilityList);
-    message.channel.sendMessage(messageContent);
-
-  }else if(command ==="asbitem"){
-
-    var itemName = args[0].toLowerCase();
-
-    var i = 1;
-    while(args[i] != undefined){
-      itemName += " " + args[i].toLowerCase();
-      i++;
-    }
-
-    var messageContent = messagePrinter.printItem(itemName, worksheetHeldItems, heldItemList, worksheetTLRItems, tlrItemList, worksheetKeyItems, keyItemList, worksheetConsumable, consumableList);
-    message.channel.sendMessage(messageContent);
-
-  }else if(command ==="asbhitem"){
-
-    var itemName = args[0].toLowerCase();
-
-    if(args[1] != undefined){
-      itemName += " " + args[1].toLowerCase();
-    }
-
-    var messageContent = messagePrinter.printHeldItem(itemName, worksheetHeldItems, heldItemList);
-    message.channel.sendMessage(messageContent);
-
-  }else if(command ==="asbtitem"){
-
-    var itemName = args[0].toLowerCase();
-
-    var i = 1;
-    while(args[i] != undefined){
-      itemName += " " + args[i].toLowerCase();
-      i++;
-    }
-
-    var messageContent = messagePrinter.printTLRItem(itemName, worksheetTLRItems, tlrItemList);
-    message.channel.sendMessage(messageContent);
-
-  }else if(command ==="asbnature"){
-
-    var natureName = args[0].toLowerCase();
-    var messageContent = messagePrinter.printNatures(natureName, worksheetNatures, natureList);
-    message.channel.sendMessage(messageContent);
-
-  }else if(command ==="calc"){
-
-    var expression = args[0];
-    var i = 1;
-    while(args[i] != undefined){
-      expression += args[i];
-      i++;
-    }
-    var messageContent = messagePrinter.printExpression(expression);
-    message.channel.sendMessage(messageContent);
-
-  }else if(command ==="asbmove"){
-
-    var moveName = args[0].toLowerCase();
-
-    var i = 1;
-    while(args[i] != undefined){
-      moveName += " " + args[i].toLowerCase();
-      i++;
-    }
-    console.log('input: '+moveName);
-    var messageContent = messagePrinter.printMoves(moveName, worksheetMoves, moveList);
-    message.channel.sendMessage(messageContent);
-
-  }else if(command ==="roll"){
-
-    var messageContent = messagePrinter.rand(args[0],args[1],args[2]);
-    message.channel.sendMessage(messageContent);
-
-  }else if(command === "help"){
-    var messageContent = messagePrinter.printHelp();
+  }else if(cmd){
+    var messageContent = cmd.process(args);
     message.channel.sendMessage(messageContent);
   }
+
 
 });
 //login info for the bot
