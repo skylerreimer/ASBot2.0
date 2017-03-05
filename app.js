@@ -13,11 +13,11 @@ var workbook = XLSX.readFile('pokemon.xlsx');
 var worksheet = workbook.Sheets[workbook.SheetNames[4]];
 var worksheetNatures = workbook.Sheets[workbook.SheetNames[5]];
 var worksheetAbilities = workbook.Sheets[workbook.SheetNames[6]];
-var worksheetHeldItems = workbook.Sheets[workbook.SheetNames[9]];
-var worksheetTLRItems = workbook.Sheets[workbook.SheetNames[12]];
-var worksheetKeyItems = workbook.Sheets[workbook.SheetNames[10]];
 var worksheetMoves = workbook.Sheets[workbook.SheetNames[8]];
-
+var worksheetHeldItems = workbook.Sheets[workbook.SheetNames[9]];
+var worksheetKeyItems = workbook.Sheets[workbook.SheetNames[10]];
+var worksheetConsumable = workbook.Sheets[workbook.SheetNames[11]];
+var worksheetTLRItems = workbook.Sheets[workbook.SheetNames[12]];
 
 //make the map of pokemon and their row numbers
 var pokemonList = setup.getPokemonList(worksheet);
@@ -26,6 +26,7 @@ var abilityList = setup.getAbilityList(worksheetAbilities);
 var heldItemList = setup.getHeldItemList(worksheetHeldItems);
 var tlrItemList = setup.getTlrItemList(worksheetTLRItems);
 var keyItemList = setup.getKeyItemList(worksheetKeyItems);
+var consumableList = setup.getConsumableList(worksheetConsumable);
 var moveList = setup.getMoveList(worksheetMoves);
 
 
@@ -70,7 +71,7 @@ bot.on('message', message => {
     var messageContent = messagePrinter.printAbilities(abilityName, worksheetAbilities, abilityList);
     message.channel.sendMessage(messageContent);
 
-  }else if(command ==="asbkitem"){
+  }else if(command ==="asbitem"){
 
     var itemName = args[0].toLowerCase();
 
@@ -80,7 +81,7 @@ bot.on('message', message => {
       i++;
     }
 
-    var messageContent = messagePrinter.printKeyItem(itemName, worksheetKeyItems, keyItemList);
+    var messageContent = messagePrinter.printItem(itemName, worksheetHeldItems, heldItemList, worksheetTLRItems, tlrItemList, worksheetKeyItems, keyItemList, worksheetConsumable, consumableList);
     message.channel.sendMessage(messageContent);
 
   }else if(command ==="asbhitem"){

@@ -58,39 +58,38 @@ module.exports = {
     return messageContent;
   },
 
-  printHeldItem: function(item, worksheet, itemList){
+  printItem: function(item, heldWorksheet, heldList, TLRworksheet, TLRlist,  keyWorksheet, keyList, consumableWorksheet, consumableList){
     item = item.replace(/\s+/g, '');
-    if(itemList.has(item)){
-      var row = itemList.get(item);
-      var messageContent = worksheet['A'+row].v + " - Item Cost: " + worksheet['C' + row].v + " | Effect: " + worksheet['D' + row].v;
+
+    if(heldList.has(item)){
+
+      var row = heldList.get(item);
+      var messageContent = heldWorksheet['A'+row].v + " - Item Cost: " + heldWorksheet['C' + row].v + " | Effect: " + heldWorksheet['D' + row].v;
+
+    }else if(TLRlist.has(item)){
+
+      var row = TLRlist.get(item);
+      var messageContent = TLRworksheet['A'+row].v + " - Item Cost: " + TLRworksheet['C' + row].v + " | Effect: " + TLRworksheet['D' + row].v + " | Trigger: " + TLRworksheet['G' + row].v;
+
+    }else if(keyList.has(item)){
+
+      var row = keyList.get(item);
+      var messageContent = keyWorksheet['A'+row].v + " - Item Type: " + keyWorksheet['B' + row].v + " | Item Cost: " + keyWorksheet['C' + row].v
+      + " | Effect: " + keyWorksheet['D' + row].v + " | Affected Pokemon: " + keyWorksheet['E' + row].v;
+
+    }else if(consumableList.has(item)){
+
+      var row = consumableList.get(item);
+      var messageContent = consumableWorksheet['A'+row].v + " - Item Type: " + consumableWorksheet['B'+row].v + " | Item Cost: " + consumableWorksheet['C'+row].v
+      + " | Effect: " + consumableWorksheet['D'+row].v + " | Affected Pokemon: " + consumableWorksheet['E'+row].v + " | Activations: " + consumableWorksheet['F'+row].v
+      + " | Trigger " + consumableWorksheet['G'+row].v + " | Natural Gift Type: " + consumableWorksheet['H'+row].v + " | Natural Gift BAP: " + consumableWorksheet['I'+row].v;
+
     }else{
-      messageContent = "That's not a held item! Did you make a typo?";
+
+      messageContent = "That's not an item! Did you make a typo?";
+
     }
 
-    return messageContent;
-  },
-
-  printTLRItem: function(item, worksheet, itemList){
-    item = item.replace(/\s+/g, '');
-    if(itemList.has(item)){
-      var row = itemList.get(item);
-      var messageContent = worksheet['A'+row].v + " - Item Cost: " + worksheet['C' + row].v + " | Effect: " + worksheet['D' + row].v + " | Trigger: " + worksheet['G' + row].v;
-    }else{
-      messageContent = "That's not a TLR item! Did you make a typo?";
-    }
-
-    return messageContent;
-  },
-
-  printKeyItem: function(item, worksheet, itemList){
-    item = item.replace(/\s+/g, '');
-    if(itemList.has(item)){
-      var row = itemList.get(item);
-      var messageContent = worksheet['A'+row].v + " - Item Type: " + worksheet['B' + row].v + " | Item Cost: " + worksheet['C' + row].v
-      + " | Effect: " + worksheet['D' + row].v + " | Affected Pokemon: " + worksheet['E' + row].v;
-    }else{
-      messageContent = "That's not a key item! Did you make a typo?";
-    }
     return messageContent;
   },
 
@@ -160,9 +159,7 @@ module.exports = {
     messageContent += "Command List:\n";
     messageContent += "%asbstats pokemon name\n";
     messageContent += "%asbility ability nane\n";
-    messageContent += "%asbkitem key item name\n";
-    messageContent += "%asbhitem held item name\n";
-    messageContent += "%asbtitem TLR item name\n";
+    messageContent += "%asbitem item name\n";
     messageContent += "%asbnature nature name\n";
     messageContent += "%asbmove move name\n";
     messageContent += "%calc expression\n";

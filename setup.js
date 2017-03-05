@@ -76,6 +76,17 @@ module.exports = {
     return keyItemList;
   },
 
+  getConsumableList: function(worksheet){
+    var consumableList = new Map();
+
+    for(i = 2; i <=config.numConsumable; i++){
+      var itemName = worksheet['A'+i].v.toLowerCase();
+      itemName = itemName.replace(/\s+/g, '');
+      consumableList.set(itemName,i);
+    }
+    return consumableList;
+  },
+
   getMoveList: function(worksheet){
     var moveList = new Map();
 
