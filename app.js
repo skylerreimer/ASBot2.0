@@ -7,7 +7,7 @@ var messagePrinter = require("./printMessages.js")
 
 //read in your file
 if(typeof require !== 'undefined') XLSX = require('xlsx');
-var workbook = XLSX.readFile('pokemon.xlsx');
+var workbook = XLSX.readFile('data.xlsx');
 
 //load the worksheet with the pokemon names
 var worksheet = workbook.Sheets[workbook.SheetNames[4]];

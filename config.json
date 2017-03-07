@@ -1,11 +1,11 @@
 {
   "prefix" : "%",
   "numPokemon" : "958",
-  "numNatures" : "27",
+  "numNatures" : "32",
   "numAbilities": "195",
-  "numHeldItems": "91",
+  "numHeldItems": "114",
   "numTLRItems": "31",
-  "numKeyItems": "148",
+  "numKeyItems": "185",
   "numConsumable": "99",
-  "numMoves": "1294"
+  "numMoves": "1629"
 }

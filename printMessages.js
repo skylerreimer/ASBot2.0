@@ -4,13 +4,21 @@ const config = require("./config.json");
 module.exports = {
   printAsbstats: function(name, worksheet, pokemonList){
     name = name.replace(/\s+/g, '');
+
+
     if(pokemonList.has(name)){
 
       //get the row of the pokemon
       var row = pokemonList.get(name);
 
       //begin collecting the information
-      var messageContent = worksheet['B'+row].v + " - " + worksheet['C'+row].v + " | " + worksheet['D'+row].v;
+
+      var messageContent = "";
+      //if the pokemo is mega or primal give it that title
+      if(worksheet['A'+row].v === "Mega" || worksheet['A'+row].v === "Primal"){
+        messageContent+= worksheet['A'+row].v + " ";
+      }
+      messageContent += worksheet['B'+row].v + " - " + worksheet['C'+row].v + " | " + worksheet['D'+row].v;
 
       //if the pokemon has hidden ability, print it
       if(worksheet['E'+row] != undefined){
@@ -36,7 +44,9 @@ module.exports = {
 
   printNatures: function(nature, worksheet, natureList){
     nature = nature.replace(/\s+/g, '');
+
     if(natureList.has(nature)){
+
       var row = natureList.get(nature);
       var messageContent = worksheet['A'+row].v + " - " + worksheet['B'+row].v + " | Moody: " + worksheet['C'+row].v;
     }else{
@@ -101,8 +111,7 @@ module.exports = {
       var rows = moveList.get(move);
       //format the name nicely
       var name = worksheet['A'+rows[0]].v;
-      name = name.replace(" (Move)","");
-      name = name.replace(" (Command)","");
+
 
       var messageContent = name + " - Type: " + worksheet['B' + rows[0]].v + " | Category: " + worksheet['C' + rows[0]].v
       + " | Target: " + worksheet['D' + rows[0]].v;
@@ -111,19 +120,35 @@ module.exports = {
         messageContent+= " | BAP: " + worksheet['G' + rows[0]].v;
       }
 
-      messageContent += " | Acc: " + worksheet['I' + rows[0]].v + " | Energy Cost: " + worksheet['J' + rows[0]].v;
+      messageContent += " | Acc: " + worksheet['I' + rows[0]].v;
+      if(worksheet['J'+rows[0]] != undefined){
+        messageContent += " | Energy Cost: " + worksheet['J' + rows[0]].v;
+      }
 
       if(worksheet['K' + rows[0]].v != '-'){
         messageContent += " | Effect Chance: " + worksheet['K' + rows[0]].v;
       }
 
       messageContent += " | Contact: " + worksheet['L' + rows[0]].v + " | Priority: " + worksheet['M' + rows[0]].v
-      + " | Combo Type: " + worksheet['N' + rows[0]].v + " | Snatch: " + worksheet['O' + rows[0]].v + " | Magic Coat/Bounce: " + worksheet['P' + rows[0]].v + " \nDescription: ";
+      + " | Combo Type: " + worksheet['N' + rows[0]].v + " | Snatch: " + worksheet['O' + rows[0]].v + " | Magic Coat/Bounce: " + worksheet['P' + rows[0]].v + " \n\nDescription: ";
 
+      //print the addition information in the remaining rows 
       var counter = rows[0] + 1;
+      messageContent+= worksheet['B'+counter].v + "\n";
+      var column = 'C';
       while(counter <= rows[1] ){
-        messageContent += " " + worksheet['B' + counter].v;
+
+        while(column != 'R'){
+
+          if(worksheet[column + counter] != undefined){
+            messageContent += worksheet[column + counter].v;
+          }
+          column = String.fromCharCode(column.charCodeAt() + 1);
+
+        }
+        column = 'B';
         counter++;
+        messageContent+="\n"
       }
 
     }else{
