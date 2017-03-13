@@ -61,7 +61,7 @@ module.exports = {
     ability = ability.replace(/\W/g, '');
     if(abilityList.has(ability)){
       var row = abilityList.get(ability);
-      var messageContent = worksheet['A'+row].v + " - Type: " + worksheet['B'+row].v + " | Description: " + worksheet['C'+row].v + " | Mold Breaker: " + worksheet['D'+row].v;
+      var messageContent = worksheet['A'+row].v + " - Type: " + worksheet['B'+row].v + " | Mold Breaker: " + worksheet['D'+row].v + " | Description: " + worksheet['C'+row].v.replace(config.newlineExcel, '\n\n'); 
     }else{
       messageContent = "That's not an ability! Did you make a typo?";
     }
@@ -130,8 +130,8 @@ module.exports = {
         messageContent += " | Effect Chance: " + worksheet['K' + rows[0]].v;
       }
 
-      messageContent += " | Contact: " + worksheet['L' + rows[0]].v + " | Priority: " + worksheet['M' + rows[0]].v
-      + " | Combo Type: " + worksheet['N' + rows[0]].v + " | Snatch: " + worksheet['O' + rows[0]].v + " | Magic Coat/Bounce: " + worksheet['P' + rows[0]].v + " \n\nDescription: ";
+      messageContent += " | Contact: " + worksheet['L' + rows[0]].v + " | Priority: " + worksheet['M' + rows[0]].v + " | Z-Bap: " + worksheet['N' + rows[0]].v
+      + " | Combo Type: " + worksheet['O' + rows[0]].v + " | Snatch: " + worksheet['P' + rows[0]].v + " | Magic Coat/Bounce: " + worksheet['Q' + rows[0]].v + " \n\nDescription: ";
 
       //print the addition information in the remaining rows
       var counter = rows[0] + 1;
@@ -168,13 +168,19 @@ module.exports = {
     }
 
     if(min == undefined){
+
       return Math.floor(Math.random() * (10000 - 1)) + 1;
+
     }else if(min != undefined && max !=undefined && next == undefined){
+
       min = Math.ceil(min);
       max = Math.floor(max);
       return Math.floor(Math.random() * (max - min)) + min;
+
     }else{
+
       return "Invalid parameters try again.";
+
     }
 
   },
