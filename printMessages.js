@@ -159,25 +159,24 @@ module.exports = {
     return messageContent;
   },
 
-  rand: function(low,high,next){
-    var messageContent;
+  rand: function(min,max,next){
 
-
-    if(low > high){
-      var temp = high;
-      high = low;
-      low = temp;
+    if(min > max){
+      var temp = max;
+      max = min;
+      min = temp;
     }
 
-    if(low == undefined){
-      messageContent = Math.floor((Math.random() * 10000) + 1);
-    }else if(low != undefined && high !=undefined && next == undefined){
-      messageContent = Math.floor((Math.random() * high) + low);
+    if(min == undefined){
+      return Math.floor(Math.random() * (10000 - 1)) + 1;
+    }else if(min != undefined && max !=undefined && next == undefined){
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min)) + min;
     }else{
-      messageContent = "Invalid parameters try again.";
+      return "Invalid parameters try again.";
     }
 
-    return messageContent;
   },
 
   printExpression: function(expression){
