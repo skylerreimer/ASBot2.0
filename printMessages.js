@@ -4,7 +4,7 @@ var Parser = require('expr-eval').Parser;
 
 module.exports = {
   printAsbstats: function(name, worksheet, pokemonList){
-    name = name.replace(/\s+/g, '');
+    name = name.replace(/\W/g, '');
 
 
     if(pokemonList.has(name)){
@@ -44,7 +44,7 @@ module.exports = {
   },
 
   printNatures: function(nature, worksheet, natureList){
-    nature = nature.replace(/\s+/g, '');
+    nature = nature.replace(/\W/g, '');
 
     if(natureList.has(nature)){
 
@@ -58,7 +58,7 @@ module.exports = {
   },
 
   printAbilities: function(ability, worksheet, abilityList){
-    ability = ability.replace(/\s+/g, '');
+    ability = ability.replace(/\W/g, '');
     if(abilityList.has(ability)){
       var row = abilityList.get(ability);
       var messageContent = worksheet['A'+row].v + " - Type: " + worksheet['B'+row].v + " | Description: " + worksheet['C'+row].v + " | Mold Breaker: " + worksheet['D'+row].v;
@@ -70,7 +70,7 @@ module.exports = {
   },
 
   printItem: function(item, heldWorksheet, heldList, TLRworksheet, TLRlist,  keyWorksheet, keyList, consumableWorksheet, consumableList){
-    item = item.replace(/\s+/g, '');
+    item = item.replace(/\W/g, '');
 
     if(heldList.has(item)){
 
@@ -105,7 +105,7 @@ module.exports = {
   },
 
   printMoves: function(move, worksheet, moveList){
-    move = move.replace(/\s+/g, '');
+    move = move.replace(/\W/g, '');
 
     if(moveList.has(move)){
 
@@ -161,6 +161,14 @@ module.exports = {
 
   rand: function(low,high,next){
     var messageContent;
+
+
+    if(low > high){
+      var temp = high;
+      high = low;
+      low = temp;
+    }
+
     if(low == undefined){
       messageContent = Math.floor((Math.random() * 10000) + 1);
     }else if(low != undefined && high !=undefined && next == undefined){

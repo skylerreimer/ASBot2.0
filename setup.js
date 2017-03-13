@@ -9,7 +9,7 @@ module.exports = {
     while(worksheet['A'+i].v != "HOUSE" ){
 
       var pokemonName = worksheet['B'+i].v.toLowerCase();
-      pokemonName = pokemonName.replace(/\s+/g, '');
+      pokemonName = pokemonName.replace(/\W/g, '');
 
       //dealing with mega and primal pokemon
       if(worksheet['A'+i].v == "Mega" || worksheet['A'+i].v == "Primal"){
@@ -32,7 +32,7 @@ module.exports = {
         var cell = 'A'+i;
         var natureCell = worksheet[cell];
         var natureName = natureCell.v.toLowerCase();
-        natureName = natureName.replace(/\s+/g, '');
+        natureName = natureName.replace(/\W/g, '');
         natureList.set(natureName,i);
       }
     }
@@ -47,7 +47,7 @@ module.exports = {
       var cell = 'A'+i;
       var abilityCell = worksheet[cell];
       var abilityName = abilityCell.v.toLowerCase();
-      abilityName = abilityName.replace(/\s+/g, '');
+      abilityName = abilityName.replace(/\W/g, '');
       abilityList.set(abilityName,i);
       i++;
     }
@@ -61,7 +61,7 @@ module.exports = {
     for(i = 2; i < config.numHeldItems; i++){
       if(worksheet['A'+i] != undefined && worksheet['B'+i] != undefined){
         var itemName = worksheet['A'+i].v.toLowerCase();
-        itemName = itemName.replace(/\s+/g, '');
+        itemName = itemName.replace(/\W/g, '');
         itemHeldList.set(itemName,i);
       }
     }
@@ -73,7 +73,7 @@ module.exports = {
     var i = 2;
     while(worksheet['A'+i] != undefined){
       var itemName = worksheet['A'+i].v.toLowerCase();
-      itemName = itemName.replace(/\s+/g, '');
+      itemName = itemName.replace(/\W/g, '');
       itemTLRList.set(itemName,i);
       i++;
     }
@@ -86,7 +86,7 @@ module.exports = {
     for(i = 2; i <= config.numKeyItems; i++){
       if(worksheet['A'+i] != undefined && worksheet['B'+i] != undefined){
         var itemName = worksheet['A'+i].v.toLowerCase();
-        itemName = itemName.replace(/\s+/g, '');
+        itemName = itemName.replace(/\W/g, '');
         keyItemList.set(itemName,i);
       }
     }
@@ -99,7 +99,7 @@ module.exports = {
     var i = 2;
     while(worksheet['A'+i] != undefined){
       var itemName = worksheet['A'+i].v.toLowerCase();
-      itemName = itemName.replace(/\s+/g, '');
+      itemName = itemName.replace(/\W/g, '');
       consumableList.set(itemName,i);
       i++;
     }
@@ -124,7 +124,7 @@ module.exports = {
         var name = worksheet['A'+start].v.toLowerCase();
         name = name.replace(" (move)","");
         name = name.replace(" (command)","");
-        name = name.replace(/\s+/g, '');
+        name = name.replace(/\W/g, '');
 
         if(!name.includes("(users)") && name != "-"){
           moveList.set(name , arr);
