@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const config = require("./config.json");
+var Parser = require('expr-eval').Parser;
 
 module.exports = {
   printAsbstats: function(name, worksheet, pokemonList){
@@ -132,7 +133,7 @@ module.exports = {
       messageContent += " | Contact: " + worksheet['L' + rows[0]].v + " | Priority: " + worksheet['M' + rows[0]].v
       + " | Combo Type: " + worksheet['N' + rows[0]].v + " | Snatch: " + worksheet['O' + rows[0]].v + " | Magic Coat/Bounce: " + worksheet['P' + rows[0]].v + " \n\nDescription: ";
 
-      //print the addition information in the remaining rows 
+      //print the addition information in the remaining rows
       var counter = rows[0] + 1;
       messageContent+= worksheet['B'+counter].v + "\n";
       var column = 'C';
@@ -172,8 +173,8 @@ module.exports = {
   },
 
   printExpression: function(expression){
-    var messageContent = expression + " = " + eval(expression);
-    return messageContent;
+    var parser = new Parser();
+    return messageContent = expression + " = " + parser.evaluate(expression);
   },
 
   printHelp: function(commands){
