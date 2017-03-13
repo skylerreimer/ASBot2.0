@@ -8,5 +8,6 @@
   "numKeyItems": "185",
   "numConsumable": "99",
   "numMoves": "1629",
-  "newlineExcel": "&#10;&#10;"
+  "doubleNewLine": "&#10;&#10;",
+  "singleNewLine": "&#10;"
 }

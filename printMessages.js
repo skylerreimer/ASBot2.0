@@ -61,7 +61,7 @@ module.exports = {
     ability = ability.replace(/\W/g, '');
     if(abilityList.has(ability)){
       var row = abilityList.get(ability);
-      var messageContent = worksheet['A'+row].v + " - Type: " + worksheet['B'+row].v + " | Mold Breaker: " + worksheet['D'+row].v + " | Description: " + worksheet['C'+row].v.replace(config.newlineExcel, '\n\n'); 
+      var messageContent = worksheet['A'+row].v + " - Type: " + worksheet['B'+row].v + " | Mold Breaker: " + worksheet['D'+row].v + " | Description: " + worksheet['C'+row].v.replace(config.doubleNewLine, '\n\n');
     }else{
       messageContent = "That's not an ability! Did you make a typo?";
     }
@@ -101,6 +101,18 @@ module.exports = {
 
     }
 
+    return messageContent;
+  },
+
+  printTypes: function(type,worksheet,typeList){
+    type = type.replace(/\W/g, '');
+
+    if(typeList.has(type)){
+      var row = typeList.get(type);
+      var messageContent = worksheet['A'+row].v + " | " + worksheet['B'+row].v.replace(config.doubleNewLine, '\n\n').replace(config.singleNewLine, '\n\n');
+    }else{
+      messageContent = "That's not a type! Did you make a typo?";
+    }
     return messageContent;
   },
 

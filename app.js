@@ -13,6 +13,7 @@ var workbook = XLSX.readFile('data.xlsx');
 var worksheet = workbook.Sheets[workbook.SheetNames[4]];
 var worksheetNatures = workbook.Sheets[workbook.SheetNames[5]];
 var worksheetAbilities = workbook.Sheets[workbook.SheetNames[6]];
+var worksheetTypes = workbook.Sheets[workbook.SheetNames[7]];
 var worksheetMoves = workbook.Sheets[workbook.SheetNames[8]];
 var worksheetHeldItems = workbook.Sheets[workbook.SheetNames[9]];
 var worksheetKeyItems = workbook.Sheets[workbook.SheetNames[10]];
@@ -28,6 +29,7 @@ var tlrItemList = setup.getTlrItemList(worksheetTLRItems);
 var keyItemList = setup.getKeyItemList(worksheetKeyItems);
 var consumableList = setup.getConsumableList(worksheetConsumable);
 var moveList = setup.getMoveList(worksheetMoves);
+var typeList = setup.getTypeList(worksheetTypes);
 
 var message;
 var commands = {
@@ -98,6 +100,19 @@ var commands = {
           i++;
         }
         return messageContent = messagePrinter.printMoves(moveName, worksheetMoves, moveList);
+      }
+    },
+
+    "asbtype":{
+      description: "returns information about a given type",
+      process: function(args){
+        var typeName = args[0].toLowerCase();
+        var i = 1;
+        while(args[i] != undefined){
+          typeName += " " + args[i].toLowerCase();
+          i++;
+        }
+        return messageContent = messagePrinter.printTypes(typeName,worksheetTypes,typeList);
       }
     },
 

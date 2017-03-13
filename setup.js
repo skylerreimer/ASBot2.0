@@ -106,6 +106,19 @@ module.exports = {
     return consumableList;
   },
 
+  getTypeList: function(worksheet){
+    var typeList = new Map();
+
+    var i = 1;
+    while(worksheet['A'+i] != undefined){
+      var typeName = worksheet['A'+i].v.toLowerCase();
+      typeName.replace(/\W/g, '');
+      typeList.set(typeName,i);
+      i++;
+    }
+    return typeList;
+  },
+
   getMoveList: function(worksheet){
     var moveList = new Map();
 
