@@ -222,8 +222,11 @@ module.exports = {
   },
 
   pong: function(){
-    var messageContent = "pong";
-    return messageContent;
+    return "pong";
+  },
+
+  ping: function(){
+    return "ping";
   }
 
 

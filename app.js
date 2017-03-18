@@ -1,11 +1,17 @@
 const Discord = require('discord.js');
-const bot = new Discord.Client();
+const schedule = require('node-schedule');
 const config = require("./config.json");
 const password = require("./password.json");
-var setup = require("./setup.js");
-var messagePrinter = require("./printMessages.js")
+const setup = require("./setup.js");
+const messagePrinter = require("./printMessages.js")
+var fs = require('fs');
+var readline = require('readline');
+var google = require('googleapis');
+var googleAuth = require('google-auth-library');
 
-//read in your file
+const bot = new Discord.Client();
+
+//read in
 if(typeof require !== 'undefined') XLSX = require('xlsx');
 var workbook = XLSX.readFile('data.xlsx');
 
@@ -31,7 +37,37 @@ var consumableList = setup.getConsumableList(worksheetConsumable);
 var moveList = setup.getMoveList(worksheetMoves);
 var typeList = setup.getTypeList(worksheetTypes);
 
-var message;
+//update the bot at a specific given time; ie reread in the row lists and grab latest data
+var rule = new schedule.RecurrenceRule();
+rule.minute = 45;
+var j = schedule.scheduleJob(rule, function(){
+  console.log('Attemping to update');
+  // Load client secrets from a local file.
+  fs.readFile('client_secret.json', function processClientSecrets(err, content) {
+    if (err) {
+      console.log('Error loading client secret file: ' + err);
+      return;
+    }
+    // Authorize a client with the loaded credentials, then call the
+    // Drive API.
+    console.log('Downloaded latest file');
+    setup.authorize(JSON.parse(content), setup.downloadFile);
+  });
+  //reload the data and rows
+  workbook = XLSX.readFile('data.xlsx');
+  pokemonList = setup.getPokemonList(worksheet);
+  natureList = setup.getNatureList(worksheetNatures);
+  abilityList = setup.getAbilityList(worksheetAbilities);
+  heldItemList = setup.getHeldItemList(worksheetHeldItems);
+  tlrItemList = setup.getTlrItemList(worksheetTLRItems);
+  keyItemList = setup.getKeyItemList(worksheetKeyItems);
+  consumableList = setup.getConsumableList(worksheetConsumable);
+  moveList = setup.getMoveList(worksheetMoves);
+  typeList = setup.getTypeList(worksheetTypes);
+  console.log('updated row lists');
+});
+
+//command list
 var commands = {
 
     "ping": {
@@ -39,6 +75,13 @@ var commands = {
         process: function(args){
           return messagePrinter.pong();
         }
+    },
+
+    "pong":{
+      description: "responds pong, useful for checking if bot is alive",
+      process: function(args){
+        return messagePrinter.ping();
+      }
     },
 
     "asbstats":{
@@ -136,7 +179,6 @@ var commands = {
       }
     }
 
-
 };
 
 
@@ -157,7 +199,7 @@ bot.on('message', message => {
   commandText = commandText.slice(config.prefix.length).toLowerCase();
   //grab the arguments and split them by spaces
   let args = message.content.split(" ").slice(1);
-
+  //help command is a special case that prints a list of other commands
   var cmd = commands[commandText];
   if(commandText === "help"){
     var messageContent = messagePrinter.printHelp(commands);
@@ -166,7 +208,6 @@ bot.on('message', message => {
     var messageContent = cmd.process(args);
     message.channel.sendMessage(messageContent);
   }
-
 
 });
 //login info for the bot
