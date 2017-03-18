@@ -184,7 +184,10 @@ var commands = {
 
 //the bot will let you know in console when it is ready
 bot.on('ready', () => {
-  console.log('Bot is online!');
+  console.log("Logged in! Serving in " + bot.guilds.array().length + " servers:");
+  for(i = 0; i < bot.guilds.array().length; i++){
+    console.log(bot.guilds.array()[i] + " ");
+  }
 });
 
 
