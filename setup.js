@@ -54,7 +54,6 @@ module.exports = {
     var pokemonList = new Map();
     var i = 2;
     while(worksheet['A'+i].v != "HOUSE" ){
-
       var pokemonName = worksheet['B'+i].v.toLowerCase();
       pokemonName = pokemonName.replace(/\W/g, '');
 
@@ -224,7 +223,7 @@ module.exports = {
   downloadFile: function(auth){
     var service = google.drive('v3');
     var fileId = '1RlsjFgpQGSZPGtwaUL33g0zHN888-iveQPKSVgFII-M';
-    var dest = fs.createWriteStream('./data.xlsx');
+    var dest = fs.createWriteStream('./test.xlsx');
     service.files.export({
       auth: auth,
       fileId: fileId,
