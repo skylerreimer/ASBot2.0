@@ -4,23 +4,7 @@ const config = require("./config.json");
 const password = require("./password.json");
 const setup = require("./setup.js");
 const messagePrinter = require("./printMessages.js")
-var fs = require('fs');
-var readline = require('readline');
-var google = require('googleapis');
-var googleAuth = require('google-auth-library');
-
 const bot = new Discord.Client();
-
-fs.readFile('client_secret.json', function processClientSecrets(err, content) {
-  if (err) {
-    console.log('Error loading client secret file: ' + err);
-    return;
-  }
-  // Authorize a client with the loaded credentials, then call the
-  // Drive API.
-  console.log('Downloaded latest file');
-  setup.authorize(JSON.parse(content), setup.downloadFile);
-})
 
 //read in
 if(typeof require !== 'undefined') XLSX = require('xlsx');
@@ -47,38 +31,6 @@ var keyItemList = setup.getKeyItemList(worksheetKeyItems);
 var consumableList = setup.getConsumableList(worksheetConsumable);
 var moveList = setup.getMoveList(worksheetMoves);
 var typeList = setup.getTypeList(worksheetTypes);
-
-
-//update the bot at a specific given time; ie reread in the row lists and grab latest data
-var rule = new schedule.RecurrenceRule();
-rule.minute = 30;
-rule.hour = 21;
-var j = schedule.scheduleJob(rule, function(){
-  console.log('Attemping to update');
-  // Load client secrets from a local file.
-  fs.readFile('client_secret.json', function processClientSecrets(err, content) {
-    if (err) {
-      console.log('Error loading client secret file: ' + err);
-      return;
-    }
-    // Authorize a client with the loaded credentials, then call the
-    // Drive API.
-    console.log('Downloaded latest file');
-    setup.authorize(JSON.parse(content), setup.downloadFile);
-  });
-  //reload the data and rows
-  workbook = XLSX.readFile('data.xlsx');
-  pokemonList = setup.getPokemonList(worksheet);
-  natureList = setup.getNatureList(worksheetNatures);
-  abilityList = setup.getAbilityList(worksheetAbilities);
-  heldItemList = setup.getHeldItemList(worksheetHeldItems);
-  tlrItemList = setup.getTlrItemList(worksheetTLRItems);
-  keyItemList = setup.getKeyItemList(worksheetKeyItems);
-  consumableList = setup.getConsumableList(worksheetConsumable);
-  moveList = setup.getMoveList(worksheetMoves);
-  typeList = setup.getTypeList(worksheetTypes);
-  console.log('updated row lists');
-});
 
 //command list
 var commands = {
