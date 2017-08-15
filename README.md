@@ -60,10 +60,10 @@ Get a real database setup!
 
 Add some more search features!
 
-#Credits
+# Credits:
 The boys and girls at CAP ASB who have been using the bot and finding all the bugs for me
 
-My friend who initally asked if this project was possible @endless in the discord channel 
+My friend who initally asked if this project was possible @endless in the discord channel
 
 # Help
 Bother me here or on discord. I'm always looking for some good help
