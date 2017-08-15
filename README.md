@@ -3,6 +3,27 @@ An anime style battling help bot for discord app based off <a href="https://gith
 
 # Features:
 
+%asbility: returns information about a given ability
+
+%asbitem: returns information about a given item
+
+%asbmove: returns information about a given move
+
+%asbnature: returns information about a given nature
+
+%asbstats: returns stats of a given pokemon
+
+%asbtype: returns information about a given type
+
+%calc: evaluates an expression
+
+%ping: responds pong, useful for checking if bot is alive
+
+%pong: responds pong, useful for checking if bot is alive
+
+%roll: gives a random number
+
+%help: gives a list of commands
 
 And much more! Try %help to get a full list of available commands
 
@@ -25,19 +46,21 @@ Anyways, you need to get the data for the bot into the res folder somehow. I per
 
 To start the bot just run
 `node app.js`.
-inside of src/bot. I personally use href="https://github.com/Unitech/pm2">pm2</a> to manage my bots. I use the same cron job from earlier to restart the bot and update it using the scripts I gave  you in the scripts folder.
+inside of src/bot. I personally use <a href="https://github.com/Unitech/pm2">pm2</a> to manage my bots. I use the same cron job from earlier to restart the bot and update it using the scripts I gave  you in the scripts folder.
 
 # Updates
 If you update the bot, please run `npm update` before starting it again. If you have
 issues with this, you can try deleting your node_modules folder and then running
-`npm install` again. Please see [Installation](#Installation).
+`npm install` again. Please see [Installation](#Installation). This repo will always have the code that is currently running in the offical ASB channel linked below
 
 # ToDo:
 Make the updater better!
+
 Get a real database setup!
-Add some more search features
+
+Add some more search features!
 
 # Help
 Bother me here or on discord. I'm always looking for some good help
 
-If you still need help join us on [discord.](https://discord.gg/SBvnyzf) and do an @comic67 to summon me
+If you still need help join us on [discord.](https://discord.gg/SBvnyzf) and do a @comic67 to summon me
