@@ -1,6 +1,6 @@
 # ASBot2.0
 
-[![CAP ASB Server](https://discordapp.com/api/guilds/279841934405664769/embed.png?style=banner2)](https://discord.gg/SBvnyzf)
+[![CAP ASB Server](https://discordapp.com/api/guilds/279841934405664769/embed.png)](https://discord.gg/SBvnyzf) <br />
 An anime style battling help bot for discord app based off <a href="https://github.com/hydrabolt/discord.js/">discord.js</a>
 
 # <a href="http://bit.ly/2l0H4EB">Add this bot to your server</a>
