@@ -153,6 +153,8 @@ bot.on('ready', () => {
   for(i = 0; i < bot.guilds.array().length; i++){
     console.log(bot.guilds.array()[i] + " ");
   }
+  bot.user.setStatus('online', '%help for commands');
+
 });
 
 

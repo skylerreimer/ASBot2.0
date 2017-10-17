@@ -102,7 +102,7 @@ function storeToken(token) {
  */
 function downloadFile(auth) {
   var service = google.drive('v3');
-  var fileId = '1RlsjFgpQGSZPGtwaUL33g0zHN888-iveQPKSVgFII-M';
+  var fileId = '17Xdwj3YQGhcWcS3bvR7e16tVdt9pqaqnpewYW_xZmx8';
   var dest = fs.createWriteStream('../../res/test.xlsx');
   service.files.export({
     auth: auth,
