@@ -11,8 +11,9 @@ module.exports = {
       pokemonName = pokemonName.replace(/\W/g, '');
 
       //dealing with mega and primal pokemon
-      if(worksheet['A'+i].v == "Mega" || worksheet['A'+i].v == "Primal"){
+      if(worksheet['A'+i].v == "Mega" || worksheet['A'+i].v == "Primal" || worksheet['A'+i].v == "Ultra"){
         pokemonName = worksheet['A'+i].v.toLowerCase() + pokemonName;
+        console.log("added " + pokemonName);
       }
 
       pokemonList.set(pokemonName,i);

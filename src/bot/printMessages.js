@@ -16,7 +16,7 @@ module.exports = {
 
       var messageContent = "";
       //if the pokemo is mega or primal give it that title
-      if(worksheet['A'+row].v === "Mega" || worksheet['A'+row].v === "Primal"){
+      if(worksheet['A'+row].v === "Mega" || worksheet['A'+row].v === "Primal" || worksheet['A'+row].v == "Ultra"){
         messageContent+= worksheet['A'+row].v + " ";
       }
       messageContent += worksheet['B'+row].v + " - " + worksheet['C'+row].v + " | " + worksheet['D'+row].v;
