@@ -1,9 +1,5 @@
 # ASBot2.0
-
-[![CAP ASB Server](https://discordapp.com/api/guilds/279841934405664769/embed.png)](https://discord.gg/SBvnyzf) <br />
-An anime style battling help bot for discord app based off <a href="https://github.com/hydrabolt/discord.js/">discord.js</a>
-
-# <a href="http://bit.ly/2l0H4EB">Add this bot to your server</a>
+Active development has discontinued. Feel free to contact me if you need help starting an instance of this bot on your own.
 
 # Features:
 
@@ -53,35 +49,17 @@ To start the bot just run
 `node app.js`.
 inside of src/bot. I personally use <a href="https://github.com/Unitech/pm2">pm2</a> to manage my bots. I use the same cron job from earlier to restart the bot and update it using the scripts I gave you in the scripts folder.
 
-OR
-
-Just add my instance of the bot onto your server. I'd appreciate a heads up if it's going to be seeing heavy use. 
 
 # Updates: 
 
 If you update the bot, please run `npm update` before starting it again. If you have
 issues with this, you can try deleting your node_modules folder and then running
-`npm install` again. Please see [Installation](#Installation). This repo will always have the code that is currently running in the offical ASB channel linked below
-
-# ToDo:
-Make the updater better!
-
-Get a real database setup!
-
-Add some more search features!
+`npm install` again. Please see [Installation](#Installation). 
 
 # Credits:
 
 The boys and girls at CAP ASB who have been using the bot and finding all the bugs for me
 
 My friend who initally asked if this project was possible @endless in the discord channel
-
-# Help: 
-
-Bother me here or on discord. I'm always looking for some good help
-
-If you still need help join us on [discord.](https://discord.gg/SBvnyzf) and do a @comic67 to summon me
-
-[![CAP ASB Server](https://discordapp.com/api/guilds/279841934405664769/embed.png?style=banner2)](https://discord.gg/SBvnyzf)
 
 
