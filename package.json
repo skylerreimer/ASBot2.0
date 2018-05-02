@@ -2,7 +2,7 @@
   "requires": true,
   "lockfileVersion": 1,
   "scripts": {
-    "start": "npm run up && node ../app.js",
+    "start": "npm run up && node app.js",
     "up": "cd .."
   },
   "dependencies": {
