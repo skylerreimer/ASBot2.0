@@ -1,5 +1,5 @@
-const Discord = require('node_modules/discord.js');
-const schedule = require('node_modules/node-schedule');
+const Discord = require('discord.js');
+const schedule = require('node-schedule');
 const config = require("res/config.json");
 const password = require("res/password.json");
 const setup = require("src/bot/setup.js");
@@ -8,7 +8,7 @@ const bot = new Discord.Client();
 
 //read in
 if(typeof require !== 'undefined') XLSX = require('xlsx');
-var workbook = XLSX.readFile('res/data.xlsx');
+var workbook = XLSX.readFile("res/data.xlsx");
 
 //load the worksheet with the pokemon names
 var worksheet = workbook.Sheets[workbook.SheetNames[4]];
