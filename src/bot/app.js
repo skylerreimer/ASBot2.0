@@ -1,5 +1,4 @@
 const Discord = require('discord.js');
-const schedule = require('node-schedule');
 const config = require("../../res/config.json");
 const password = require("../../res/password.json");
 const setup = require("./setup.js");
@@ -176,7 +175,7 @@ bot.on('message', message => {
     message.channel.sendMessage(messageContent);
   }else if(cmd){
     var messageContent = cmd.process(args);
-    message.channel.sendMessage(messageContent);
+    message.channel.send(messageContent);
   }
 
 });
