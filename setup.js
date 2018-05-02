@@ -1,5 +1,4 @@
-const Discord = require('discord.js');
-const config = require("../../res/config.json");
+const config = require("./res/config.json");
 
 module.exports = {
   getPokemonList: function(worksheet){

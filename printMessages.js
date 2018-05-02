@@ -1,5 +1,4 @@
-const Discord = require('discord.js');
-const config = require("../../res/config.json");
+const config = require("./res/config.json");
 var Parser = require('expr-eval').Parser;
 
 module.exports = {
