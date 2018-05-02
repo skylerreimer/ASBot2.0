@@ -1,0 +1,33 @@
+{
+  "name": "asbot2.0",
+  "version": "1.0.0",
+  "description": "Discord Bot for Anime Styling battling",
+  "main": "bot.js",
+  "engines": {
+    "node": "8.x",
+    "npm": "*"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node bot.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skylerreimer/ASBot2.0.git"
+  },
+  "keywords": [
+    "discord",
+    "pokemon"
+  ],
+  "author": "Skyler Reimer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/skylerreimer/ASBot2.0/issues"
+  },
+  "homepage": "https://github.com/skylerreimer/ASBot2.0#readme",
+  "dependencies": {
+    "discord.js": "^11.3.2",
+    "expr-eval": "^1.2.1",
+    "xlsx": "^0.12.11"
+  }
+}
