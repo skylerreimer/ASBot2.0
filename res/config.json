@@ -1,0 +1,13 @@
+{
+  "prefix" : "%",
+  "numPokemon" : "960",
+  "numNatures" : "32",
+  "numAbilities": "195",
+  "numHeldItems": "114",
+  "numTLRItems": "31",
+  "numKeyItems": "185",
+  "numConsumable": "99",
+  "numMoves": "1647",
+  "doubleNewLine": "&#10;&#10;",
+  "singleNewLine": "&#10;"
+}
